@@ -6,14 +6,16 @@ public class OrderItem {
     private int proId;
     private int quantity;
     private double price;
+    private boolean isDelete;
 
     public OrderItem() {
     }
 
-    public OrderItem(int proId, int quantity, double price) {
+    public OrderItem(int proId, int quantity, double price, boolean isDelete) {
         this.proId = proId;
         this.quantity = quantity;
         this.price = price;
+        this.isDelete = isDelete;
     }
 
     public int getItemId() {
@@ -46,6 +48,14 @@ public class OrderItem {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 
     @Override
