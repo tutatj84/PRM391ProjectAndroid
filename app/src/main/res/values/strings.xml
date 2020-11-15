@@ -17,4 +17,5 @@
     <string name="total">Total:</string>
     <string name="Price">$10,000</string>
     <string name="place_order">Place Order</string>
+    <string name="check_out">CHECK OUT</string>
 </resources>

@@ -1,3 +1,2 @@
-include ':mylibrary2'
 include ':app'
 rootProject.name = "My Application"

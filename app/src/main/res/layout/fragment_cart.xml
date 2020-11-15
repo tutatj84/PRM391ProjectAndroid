@@ -2,15 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootLayout"
+    android:id="@+id/card_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_launcher_background"
     android:padding="16dp"
     tools:context=".ui.CartFragment">
 
     <ListView
-        android:id="@+id/lvOrders"
+        android:id="@+id/lvOrder"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -49,21 +48,19 @@
 
             </LinearLayout>
 
-            <com.example.mylibrary2.utils.FButton
-                android:id="@+id/place_order_button"
+            <Button
+                android:id="@+id/btnPlaceOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:background="@color/colorAccent"
                 android:shadowColor="@android:color/black"
                 android:text="@string/place_order"
                 android:textColor="@android:color/white"
-                app:buttonColor="@color/signInActive"
-                app:cornerRadius="4dp"
-                app:shadowEnabled="true"
-                app:shadowHeight="5dp" />
+                app:cornerRadius="4dp" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

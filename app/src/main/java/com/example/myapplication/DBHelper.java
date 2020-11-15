@@ -18,6 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		"name text," +
 		"phone text," +
 		"email text," +
+		"address text," +
 		"city text" +
 		")";
 	private final String CREATE_TABLE_ORDER = "CREATE TABLE if not exists OrderTbl (" +
@@ -43,13 +44,14 @@ public class DBHelper extends SQLiteOpenHelper {
 	private final String DROP_TABLE_ORDERITEM = "DROP TABLE Order_Item";
 
 //	insert
-	private final String INSERT_TABLE_PRODUCT = "INSERT INTO Product(pro_id, name, remain_quantity, type, price) VALUES (?, ?, ?, ?, ?)";
-	private final String INSERT_TABLE_CUSTOMER = "INSERT INTO Customer(cus_id, name, phone, email, city) VALUES (?, ?, ?, ?, ?)";
-	private final String INSERT_TABLE_ORDER = "INSERT INTO OrderTbl(ord_id, cus_id, status, order_date, deliver_date, address, total_price) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private final String INSERT_TABLE_ORDERITEM = "INSERT INTO Order_Item(item_id, pro_id, ord_quantity, price) VALUES (?, ?, ?, ?)";
+	private static final String INSERT_TABLE_PRODUCT = "INSERT INTO Product(pro_id, name, remain_quantity, type, price) VALUES (?, ?, ?, ?, ?)";
+	private static final String INSERT_TABLE_CUSTOMER = "INSERT INTO Customer(cus_id, name, phone, email, address, city) VALUES (?, ?, ?, ?, ?)";
+	public static final String INSERT_TABLE_ORDER = "INSERT INTO OrderTbl(cus_id, status, order_date, deliver_date, address, total_price) VALUES (?, ?, ?, ?, ?, ?)";
+	public static final String INSERT_TABLE_ORDERITEM = "INSERT INTO Order_Item(pro_id, ord_quantity, price) VALUES (?, ?, ?)";
 
 //	select
-
+	public static final String SELECT_ALL_ORDER = "SElECT * FROM OrderTbl";
+	public static final String SELECT_ALL_ORDERITEM = "SElECT * FROM Order_Item";
 	//
 
 	public DBHelper(Context context, String dbName, int version) {
