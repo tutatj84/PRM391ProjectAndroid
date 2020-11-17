@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".TryActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"

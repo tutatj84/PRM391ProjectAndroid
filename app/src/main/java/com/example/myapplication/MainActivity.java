@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 		db = dbHelper.getReadableDatabase();
 
 
-		Intent intent = new Intent(this, LoginActivity.class);
+		Intent intent = new Intent(this, HomeActivity.class);
 		startActivity(intent);
 	}
 }
