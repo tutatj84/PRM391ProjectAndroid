@@ -17,5 +17,7 @@
     <string name="txt_sign_up_link">
         <u>Or Sign Up here</u>
     </string>
+    <string name="button_add_to_cart">Add To Cart</string>
+    <string name="search_product">Tìm sản phẩm bạn muốn</string>
     <string name="menu_order">Order</string>
 </resources>
