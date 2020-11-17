@@ -9,6 +9,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	private final String CREATE_TABLE_PRODUCT = "CREATE TABLE if not exists Product (" +
 		"pro_id integer primary key autoincrement," +
 		"name text," +
+		"content text," +
+		"image text," +
 		"remain_quantity integer," +
 		"type text," +
 		"price real" +
