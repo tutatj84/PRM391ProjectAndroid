@@ -101,7 +101,7 @@ public class ListFragment extends Fragment {
 		rcvProduct = view.findViewById(R.id.rcvProduct);
 		edtSearch = view.findViewById(R.id.edtSearch);
 		btnSearch = view.findViewById(R.id.btnSearch);
-		dbHelper = new DBHelper(view.getContext(), "order_app.db", 1);
+		dbHelper = new DBHelper(view.getContext(), "order_app.db", 2);
 		db = dbHelper.getReadableDatabase();
 
 		storeData();

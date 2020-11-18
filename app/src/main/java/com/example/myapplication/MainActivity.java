@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		//init db
-		dbHelper = new DBHelper(this, "order_app.db", 1);
+		dbHelper = new DBHelper(this, "order_app.db", 2);
 		db = dbHelper.getReadableDatabase();
 
 
