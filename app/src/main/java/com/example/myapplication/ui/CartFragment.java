@@ -17,10 +17,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.DBHelper;
 import com.example.myapplication.R;
-import com.example.myapplication.model.Product;
-import com.example.myapplication.ui.viewholder.OrderItemAdapter;
 import com.example.myapplication.model.Order;
 import com.example.myapplication.model.OrderItem;
+import com.example.myapplication.model.Product;
+import com.example.myapplication.ui.viewholder.OrderItemAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -102,19 +102,14 @@ public class CartFragment extends Fragment {
         db = helper.getReadableDatabase();
         Cursor c = db.rawQuery(DBHelper.SELECT_ALL_ORDERITEM, null);
 
-		while (c.moveToNext()) {
-			int itemId = c.getInt(c.getColumnIndex("item_id"));
-			int proId = c.getInt(c.getColumnIndex("pro_id"));
-			int quantity = c.getInt(c.getColumnIndex("ord_quantity"));
+        while (c.moveToNext()) {
+            int itemId = c.getInt(c.getColumnIndex("item_id"));
+            int proId = c.getInt(c.getColumnIndex("pro_id"));
+            int quantity = c.getInt(c.getColumnIndex("ord_quantity"));
             Long price = c.getLong(c.getColumnIndex("price"));
-			OrderItem item = new OrderItem(proId, quantity, price, false);
-			listItems.add(item);
-		}
-
-//        listItems.add(new OrderItem(1, 3, 200, true));
-//        listItems.add(new OrderItem(1, 3, 300, true));
-//        listItems.add(new OrderItem(2, 3, 400, true));
-//        listItems.add(new OrderItem(1, 3, 500, true));
+            OrderItem item = new OrderItem(proId, quantity, price, false);
+            listItems.add(item);
+        }
 
         adapter = new OrderItemAdapter(this, listItems);
         lvOrders.setAdapter(adapter);
@@ -124,6 +119,8 @@ public class CartFragment extends Fragment {
             public void onClick(View v) {
 
                 Order order = new Order(1, "Ordered", getCurrentDate(), getDeliveryDate(), "customer.Address", totalAmount);
+
+                //Order order = new Order(getCurrentCustomer().getId(), "Ordered", getCurrentDate(), getDeliveryDate(), getCurrentCustomer().getAddress(), totalAmount);
 
                 db = helper.getWritableDatabase();
                 for (OrderItem item : listItems) {
@@ -153,9 +150,9 @@ public class CartFragment extends Fragment {
         if (item.isChoosing()) {
             Long total = item.getQuantity() * item.getPrice();
             totalAmount += total;
-        }else {
+        } else {
             Long total = item.getQuantity() * item.getPrice();
-	        totalAmount -= total;
+            totalAmount -= total;
         }
         tvTotalPrice.setText(totalAmount + " VND");
     }
@@ -174,7 +171,7 @@ public class CartFragment extends Fragment {
         Product p = new Product();
         helper.getReadableDatabase();
         db = helper.getReadableDatabase();
-        Cursor c = db.rawQuery(DBHelper.GET_PRODUCT, new String[]{String.valueOf(productId)});
+        Cursor c = db.rawQuery(DBHelper.GET_PRODUCT_BY_ID, new String[]{String.valueOf(productId)});
         while (c.moveToNext()) {
             p.setProductID(c.getInt(c.getColumnIndex("pro_id")));
             p.setimage(c.getString(c.getColumnIndex("image")));
@@ -183,7 +180,7 @@ public class CartFragment extends Fragment {
             p.setType(c.getString(c.getColumnIndex("type")));
             p.setContent(c.getString(c.getColumnIndex("content")));
             p.setPrice(c.getLong(c.getColumnIndex("price")));
-		}
+        }
         return p;
     }
 
@@ -203,11 +200,4 @@ public class CartFragment extends Fragment {
         return formatter.format(deliveryDate);
     }
 
-//	public void reload() {
-//		FragmentTransaction ft = getFragmentManager().beginTransaction();
-//		if (Build.VERSION.SDK_INT >= 26) {
-//			ft.setReorderingAllowed(false);
-//		}
-//		ft.detach(this).attach(this).commit();
-//	}
 }

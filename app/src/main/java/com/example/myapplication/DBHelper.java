@@ -59,7 +59,8 @@ private final String CREATE_TABLE_PRODUCT = "CREATE TABLE if not exists Product 
 	public final String SELECT_SEARCH_PRODUCT = "SELECT * FROM Product WHERE name like ?";
 	public static final String SELECT_ALL_ORDER = "SElECT * FROM OrderTbl";
 	public static final String SELECT_ALL_ORDERITEM = "SElECT * FROM Order_Item";
-	public static final String GET_PRODUCT = "SELECT * FROM Product WHERE pro_id = ?";
+	public static final String GET_PRODUCT_BY_ID = "SELECT * FROM Product WHERE pro_id = ?";
+	public static final String GET_CUSTOMER_BY_ID = "SELECT * FROM Customer WHERE cus_id = ?";
 	//
 
 	public DBHelper(Context context, String dbName, int version) {

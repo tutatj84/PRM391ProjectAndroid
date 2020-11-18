@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_item"
+        android:id="@+id/card_ordered"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -33,86 +33,60 @@
                     android:orientation="horizontal"
                     android:weightSum="5">
 
-                    <CheckBox
-                        android:id="@+id/chk_selectitem"
-                        android:layout_width="323dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.15"
-                        android:background="#FFFFFF"
-                        android:checked="false"
-                        android:clickable="true" />
-
-                    <ImageView
-                        android:id="@+id/ivProduct"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp" />
-
                     <TextView
-                        android:id="@+id/tvItemName"
-                        android:layout_width="275dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.75"
-                        android:text="@string/item_name"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#673AB7"
-                        android:textSize="13sp" />
-
-                    <Button
-                        android:id="@+id/btnQuantityMinus"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/ic_minus"
-                        android:backgroundTint="#000000"
-                        card_view:srcCompat="@drawable/ic_minus" />
-
-                    <TextView
-                        android:id="@+id/tvQuantity"
-                        android:layout_width="295dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.1"
-                        android:text="@string/quantity"
-                        android:textAlignment="center"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#673AB7"
-
-                        android:textSize="13sp" />
-
-                    <Button
-                        android:id="@+id/btnQuantityPlus"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/ic_plus"
-                        android:backgroundTint="#000000"
-                        card_view:srcCompat="@drawable/ic_plus" />
-
-                    <TextView
-                        android:id="@+id/tvPrice"
-                        android:layout_width="300dp"
+                        android:id="@+id/tvCustomerName"
+                        android:layout_width="335dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/Price"
+                        android:text="@string/name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#673AB7"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvOrderDate"
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/order_date"
                         android:textAlignment="center"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#673AB7"
                         android:textSize="13sp" />
 
                     <TextView
-                        android:id="@+id/tvTotal"
+                        android:id="@+id/tvDeliveryDate"
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/delivery_date"
+                        android:textAlignment="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#673AB7"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalAmount"
                         android:layout_width="315dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/total"
+                        android:text="@string/total_amount"
                         android:textAlignment="center"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#673AB7"
                         android:textSize="13sp" />
 
-                    <Button
-                        android:id="@+id/btnDelete"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/ic_trash"
-                        android:backgroundTint="#FF0000" />
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="315dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.1"
+                        android:text="@string/status"
+                        android:textAlignment="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#673AB7"
+                        android:textSize="13sp" />
+
                 </LinearLayout>
 
             </LinearLayout>
