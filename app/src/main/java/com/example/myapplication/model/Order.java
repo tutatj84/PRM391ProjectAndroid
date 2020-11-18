@@ -10,13 +10,13 @@ public class Order {
     private String orderDate;
     private String deliverDate;
     private String address;
-    private double totalPrice;
+    private Long totalPrice;
     private List<OrderItem> items;
 
     public Order() {
     }
 
-    public Order(int cusId, String status, String orderDate, String deliverDate, String address, double totalPrice) {
+    public Order(int cusId, String status, String orderDate, String deliverDate, String address, Long totalPrice) {
         this.cusId = cusId;
         this.status = status;
         this.orderDate = orderDate;
@@ -81,11 +81,11 @@ public class Order {
         this.address = address;
     }
 
-    public double getTotalPrice() {
+    public Long getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(Long totalPrice) {
         this.totalPrice = totalPrice;
     }
 }

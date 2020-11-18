@@ -5,17 +5,17 @@ public class OrderItem {
     private int itemId;
     private int proId;
     private int quantity;
-    private double price;
-    private boolean isDelete;
+    private Long price;
+    private boolean isChoosing;
 
     public OrderItem() {
     }
 
-    public OrderItem(int proId, int quantity, double price, boolean isDelete) {
+    public OrderItem(int proId, int quantity, Long price, boolean isChoosing) {
         this.proId = proId;
         this.quantity = quantity;
         this.price = price;
-        this.isDelete = isDelete;
+        this.isChoosing = isChoosing;
     }
 
     public int getItemId() {
@@ -42,20 +42,20 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
-    public boolean isDelete() {
-        return isDelete;
+    public boolean isChoosing() {
+        return isChoosing;
     }
 
-    public void setDelete(boolean delete) {
-        isDelete = delete;
+    public void setChoosing(boolean choosing) {
+        isChoosing = choosing;
     }
 
     @Override

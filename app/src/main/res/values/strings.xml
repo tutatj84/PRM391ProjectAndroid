@@ -21,7 +21,7 @@
     <string name="search_product">Tìm sản phẩm bạn muốn</string>
     <string name="menu_order">Order</string>
     <string name="total">Total:</string>
-    <string name="Price">$0.0</string>
+    <string name="Price">0 VND</string>
     <string name="place_order">Place Order</string>
     <string name="check_out">CHECK OUT</string>
     <string name="itemname">Itemname</string>

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.DBHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.model.Product;
 import com.example.myapplication.ui.viewholder.OrderItemAdapter;
 import com.example.myapplication.model.Order;
 import com.example.myapplication.model.OrderItem;
@@ -48,7 +49,7 @@ public class CartFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private double totalAmount = 0;
+    private Long totalAmount = 0L;
 
     public CartFragment() {
         // Required empty public constructor
@@ -96,24 +97,24 @@ public class CartFragment extends Fragment {
         lvOrders = view.findViewById(R.id.lvOrder);
         tvTotalPrice = view.findViewById(R.id.tvTotalPrice);
 
-        helper = new DBHelper(getContext(), "mydatabase.db", 1);
+        helper = new DBHelper(getContext(), "order_app.db", 2);
         helper.getReadableDatabase();
         db = helper.getReadableDatabase();
         Cursor c = db.rawQuery(DBHelper.SELECT_ALL_ORDERITEM, null);
 
-//		while (c.moveToNext()) {
-//			int itemId = c.getInt(c.getColumnIndex("item_id"));
-//			int proId = c.getInt(c.getColumnIndex("pro_id"));
-//			int quantity = c.getInt(c.getColumnIndex("ord_quantity"));
-//			double price = c.getDouble(c.getColumnIndex("price"));
-//			OrderItem item = new OrderItem(itemId, proId, quantity, price);
-//			listItems.add(item);
-//		}
+		while (c.moveToNext()) {
+			int itemId = c.getInt(c.getColumnIndex("item_id"));
+			int proId = c.getInt(c.getColumnIndex("pro_id"));
+			int quantity = c.getInt(c.getColumnIndex("ord_quantity"));
+            Long price = c.getLong(c.getColumnIndex("price"));
+			OrderItem item = new OrderItem(proId, quantity, price, false);
+			listItems.add(item);
+		}
 
-        listItems.add(new OrderItem(1, 3, 200, true));
-        listItems.add(new OrderItem(1, 3, 300, true));
-        listItems.add(new OrderItem(2, 3, 400, true));
-        listItems.add(new OrderItem(1, 3, 500, true));
+//        listItems.add(new OrderItem(1, 3, 200, true));
+//        listItems.add(new OrderItem(1, 3, 300, true));
+//        listItems.add(new OrderItem(2, 3, 400, true));
+//        listItems.add(new OrderItem(1, 3, 500, true));
 
         adapter = new OrderItemAdapter(this, listItems);
         lvOrders.setAdapter(adapter);
@@ -122,11 +123,11 @@ public class CartFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Order order = new Order(1, "status", getCurrentDate(), getDeliveryDate(), "customer.Address", totalAmount);
+                Order order = new Order(1, "Ordered", getCurrentDate(), getDeliveryDate(), "customer.Address", totalAmount);
 
                 db = helper.getWritableDatabase();
                 for (OrderItem item : listItems) {
-                    if (!item.isDelete()) {
+                    if (item.isChoosing()) {
                         db.execSQL(DBHelper.INSERT_TABLE_ORDERITEM, new Object[]{
                                 item.getProId(),
                                 item.getQuantity(),
@@ -149,14 +150,41 @@ public class CartFragment extends Fragment {
     }
 
     public void calculateTotal(OrderItem item) {
-        if (!item.isDelete()) {
-            double total = item.getQuantity() * item.getPrice();
+        if (item.isChoosing()) {
+            Long total = item.getQuantity() * item.getPrice();
             totalAmount += total;
         }else {
-	        double total = item.getQuantity() * item.getPrice();
+            Long total = item.getQuantity() * item.getPrice();
 	        totalAmount -= total;
         }
-        tvTotalPrice.setText("$" + totalAmount);
+        tvTotalPrice.setText(totalAmount + " VND");
+    }
+
+    public void deleteOrder(OrderItem item) {
+        listItems.remove(item);
+        tvTotalPrice.setText("0 VND");
+        lvOrders.setAdapter(adapter);
+    }
+
+    public void setQuantity(int newQuantity, int index) {
+        listItems.get(index).setQuantity(newQuantity);
+    }
+
+    public Product getProduct(int productId) {
+        Product p = new Product();
+        helper.getReadableDatabase();
+        db = helper.getReadableDatabase();
+        Cursor c = db.rawQuery(DBHelper.GET_PRODUCT, new String[]{String.valueOf(productId)});
+        while (c.moveToNext()) {
+            p.setProductID(c.getInt(c.getColumnIndex("pro_id")));
+            p.setimage(c.getString(c.getColumnIndex("image")));
+            p.setName(c.getString(c.getColumnIndex("name")));
+            p.setRemainQuantity(c.getInt(c.getColumnIndex("remain_quantity")));
+            p.setType(c.getString(c.getColumnIndex("type")));
+            p.setContent(c.getString(c.getColumnIndex("content")));
+            p.setPrice(c.getLong(c.getColumnIndex("price")));
+		}
+        return p;
     }
 
     private String getCurrentDate() {
