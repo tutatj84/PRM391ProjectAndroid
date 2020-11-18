@@ -39,6 +39,7 @@ public class ListFragment extends Fragment {
 	private DBHelper dbHelper;
 	private SQLiteDatabase db;
 	private List<Product> productList;
+	private Product product;
 
 	public EditText getEdtSearch() {
 		return edtSearch;
@@ -117,10 +118,10 @@ public class ListFragment extends Fragment {
 			public void onClick(View v) {
 				int count = 0;
 				productList = new ArrayList<>();
-				Product product = new Product();
 				SQLiteDatabase db = dbHelper.getReadableDatabase();
-				Cursor cursor = db.rawQuery(dbHelper.SELECT_SEARCH_PRODUCT, new String[]{edtSearch.getText().toString().trim()});
+				Cursor cursor = db.rawQuery(dbHelper.SELECT_SEARCH_PRODUCT, new String[]{edtSearch.getText().toString()});
 				while (cursor.moveToNext()) {
+					product = new Product();
 					product.setimage(cursor.getString(cursor.getColumnIndex("image")));
 					product.setName(cursor.getString(cursor.getColumnIndex("name")));
 					product.setPrice(cursor.getLong(cursor.getColumnIndex("price")));
@@ -146,9 +147,9 @@ public class ListFragment extends Fragment {
 
 	public void storeData(){
 		productList = new ArrayList<>();
-		Product product = new Product();
 		Cursor cursor = db.rawQuery(dbHelper.SELECT_ALL_PRODUCTS, null);
 		while (cursor.moveToNext()){
+			product = new Product();
 			product.setProductID(cursor.getInt(cursor.getColumnIndex("pro_id")));
 			product.setimage(cursor.getString(cursor.getColumnIndex("image")));
 			product.setName(cursor.getString(cursor.getColumnIndex("name")));

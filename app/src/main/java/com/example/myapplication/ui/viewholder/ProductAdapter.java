@@ -54,11 +54,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     context.startActivity(intent);
                 }
             });
-            holder.btnAddToCart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
     }
 
     @Override
@@ -74,14 +69,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         private ImageView imgProduct;
         private TextView txtProductName;
         private  TextView txtProductPrice;
-        private Button btnAddToCart;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             imgProduct = itemView.findViewById(R.id.imgProduct);
             txtProductName = itemView.findViewById(R.id.txtProductName);
             txtProductPrice = itemView.findViewById(R.id.txtProductPrice);
-            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
         }
     }
 }

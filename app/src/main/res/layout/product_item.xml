@@ -36,13 +36,5 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/btnAddToCart"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="right"
-            android:layout_margin="8dp"
-            android:background="@drawable/ic_addtocart"
-            android:backgroundTint="#03A9F4" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
