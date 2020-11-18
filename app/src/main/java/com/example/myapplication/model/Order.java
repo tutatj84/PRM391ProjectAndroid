@@ -1,6 +1,5 @@
-package com.example.myapplication.ui.entity;
+package com.example.myapplication.model;
 
-import java.util.Date;
 import java.util.List;
 
 

@@ -17,9 +17,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.DBHelper;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.adapter.OrderItemAdapter;
-import com.example.myapplication.ui.entity.Order;
-import com.example.myapplication.ui.entity.OrderItem;
+import com.example.myapplication.ui.viewholder.OrderItemAdapter;
+import com.example.myapplication.model.Order;
+import com.example.myapplication.model.OrderItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

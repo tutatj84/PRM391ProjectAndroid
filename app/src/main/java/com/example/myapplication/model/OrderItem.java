@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.entity;
+package com.example.myapplication.model;
 
 public class OrderItem {
 
