@@ -1,14 +1,29 @@
 package com.example.myapplication.ui;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.myapplication.DBHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.model.Product;
+import com.example.myapplication.ui.viewholder.ProductAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +31,22 @@ import com.example.myapplication.R;
  * create an instance of this fragment.
  */
 public class ListFragment extends Fragment {
+
+	private RecyclerView rcvProduct;
+	private ProductAdapter mProductAdapter;
+	private EditText edtSearch;
+	private ImageButton btnSearch;
+	private DBHelper dbHelper;
+	private SQLiteDatabase db;
+	private List<Product> productList;
+
+	public EditText getEdtSearch() {
+		return edtSearch;
+	}
+
+	public void setEdtSearch(EditText edtSearch) {
+		this.edtSearch = edtSearch;
+	}
 
 	// TODO: Rename parameter arguments, choose names that match
 	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,8 +90,74 @@ public class ListFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	                         Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		return inflater.inflate(R.layout.fragment_list, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		rcvProduct = view.findViewById(R.id.rcvProduct);
+		edtSearch = view.findViewById(R.id.edtSearch);
+		btnSearch = view.findViewById(R.id.btnSearch);
+		dbHelper = new DBHelper(view.getContext(), "order_app.db", 1);
+		db = dbHelper.getReadableDatabase();
+
+		storeData();
+
+		mProductAdapter = new ProductAdapter(getContext(), productList);
+		rcvProduct.setAdapter(mProductAdapter);
+		RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+		rcvProduct.setLayoutManager(layoutManager);
+		mProductAdapter.notifyDataSetChanged();
+
+		btnSearch.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				int count = 0;
+				productList = new ArrayList<>();
+				Product product = new Product();
+				SQLiteDatabase db = dbHelper.getReadableDatabase();
+				Cursor cursor = db.rawQuery(dbHelper.SELECT_SEARCH_PRODUCT, new String[]{edtSearch.getText().toString().trim()});
+				while (cursor.moveToNext()) {
+					product.setimage(cursor.getString(cursor.getColumnIndex("image")));
+					product.setName(cursor.getString(cursor.getColumnIndex("name")));
+					product.setPrice(cursor.getLong(cursor.getColumnIndex("price")));
+					product.setRemainQuantity(cursor.getInt(cursor.getColumnIndex("remain_quantity")));
+					product.setType(cursor.getString(cursor.getColumnIndex("type")));
+					product.setContent(cursor.getString(cursor.getColumnIndex("content")));
+					productList.add(product);
+					count ++;
+				}
+				cursor.close();
+				mProductAdapter = new ProductAdapter(getContext(), productList);
+				rcvProduct.setAdapter(mProductAdapter);
+				RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+				rcvProduct.setLayoutManager(layoutManager);
+				mProductAdapter.notifyDataSetChanged();
+
+				if(count == 0){
+					Toast.makeText(getContext(), "Không tìm thấy sản phẩm", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+	}
+
+	public void storeData(){
+		productList = new ArrayList<>();
+		Product product = new Product();
+		Cursor cursor = db.rawQuery(dbHelper.SELECT_ALL_PRODUCTS, null);
+		while (cursor.moveToNext()){
+			product.setProductID(cursor.getInt(cursor.getColumnIndex("pro_id")));
+			product.setimage(cursor.getString(cursor.getColumnIndex("image")));
+			product.setName(cursor.getString(cursor.getColumnIndex("name")));
+			product.setRemainQuantity(cursor.getInt(cursor.getColumnIndex("remain_quantity")));
+			product.setType(cursor.getString(cursor.getColumnIndex("type")));
+			product.setContent(cursor.getString(cursor.getColumnIndex("content")));
+			product.setPrice(cursor.getLong(cursor.getColumnIndex("price")));
+			productList.add(product);
+		}
+		cursor.close();
 	}
 }
