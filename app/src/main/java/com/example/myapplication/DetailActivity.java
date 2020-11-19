@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,8 @@ public class DetailActivity extends AppCompatActivity {
     private Button btnCart;
     private Button btnMinus;
     private Button btnPlus;
+    private DBHelper dbHelper;
+    private SQLiteDatabase db;
     private int amount = 1;
     private Long total;
 
@@ -85,11 +88,26 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(amount == 0){
                     Toast.makeText(DetailActivity.this, "Vui lòng chọn số lượng", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                insertOrder(amount);
             }
         });
     }
-    private void setTotal(int amount){
+
+    private void insertOrder(int amount){
+        dbHelper = new DBHelper(this, "order_app.db", 2);
+        db = dbHelper.getWritableDatabase();
+        Intent intent = getIntent();
+        final Product product = (Product) intent.getSerializableExtra("product");
+        String productId = String.valueOf(product.getProductID());
+        int orderQuantity = amount;
+        Long priceOrder = setTotal(amount);
+        db.execSQL(dbHelper.INSERT_TABLE_ORDERITEM, new Object[]{productId, orderQuantity, priceOrder});
+        Toast.makeText(DetailActivity.this, "Cho vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+    }
+
+    private Long setTotal(int amount){
         Intent intent = getIntent();
         final Product product = (Product) intent.getSerializableExtra("product");
         total = product.getPrice() * amount;
@@ -100,5 +118,6 @@ public class DetailActivity extends AppCompatActivity {
         txtProductType.setText(product.getType());
         txtProductContent.setText(product.getContent());
 
+        return total;
     }
 }
