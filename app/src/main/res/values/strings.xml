@@ -20,4 +20,15 @@
     <string name="button_add_to_cart">Add To Cart</string>
     <string name="search_product">Tìm sản phẩm bạn muốn</string>
     <string name="menu_order">Order</string>
+    <string name="total">Total:</string>
+    <string name="Price">0 VND</string>
+    <string name="place_order">Place Order</string>
+    <string name="check_out">CHECK OUT</string>
+    <string name="item_name">Item Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="name">Name</string>
+    <string name="order_date">Order Date</string>
+    <string name="delivery_date">Delivery Date</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="status">Status</string>
 </resources>
