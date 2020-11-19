@@ -31,4 +31,6 @@
     <string name="delivery_date">Delivery Date</string>
     <string name="total_amount">Total Amount</string>
     <string name="status">Status</string>
+    <string name="intro">Carrot Food sử dụng nguồn nguyên liệu tốt nhất thị trường, kết hợp với những đầu bếp hàng đầu vũ trụ!!!</string>
+    <string name="welcome">Welcome to Carrot Food</string>
 </resources>
