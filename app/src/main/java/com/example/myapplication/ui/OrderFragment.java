@@ -1,5 +1,8 @@
 package com.example.myapplication.ui;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.DBHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.model.Customer;
 import com.example.myapplication.model.Order;
 import com.example.myapplication.model.Product;
 import com.example.myapplication.ui.viewholder.OrderedAdapter;
@@ -104,18 +108,16 @@ public class OrderFragment extends Fragment {
         lvOrdered.setAdapter(adapter);
 
     }
-//	public Customer getCustomer(int customerId) {
-//		Customer customer = new Customer();
-//		helper.getReadableDatabase();
-//		db = helper.getReadableDatabase();
-//		Cursor c = db.rawQuery(DBHelper.GET_CUSTOMER_BY_ID, new String[]{String.valueOf(customerId)});
-//		while (c.moveToNext()) {
-//			customer.setName(c.getInt(c.getColumnIndex("name")));
-//			customer.setPhone(c.getString(c.getColumnIndex("phone")));
-//			customer.setEmail(c.getString(c.getColumnIndex("email")));
-//			customer.setAddress(c.getInt(c.getColumnIndex("address")));
-//			customer.setCity(c.getString(c.getColumnIndex("city")));
-//		}
-//		return customer;
-//	}
+	public Customer getCustomer() {
+		Customer customer = new Customer();
+		Activity a = getActivity();
+      SharedPreferences sharedPreferences= getActivity().getSharedPreferences("sessionLogin", Context.MODE_PRIVATE);
+      customer.setId(sharedPreferences.getInt("cusId", 0));
+      customer.setUsername(sharedPreferences.getString("username", ""));
+      customer.setName(sharedPreferences.getString("name", "Mr. A"));
+      customer.setPhone(sharedPreferences.getString("phone", ""));
+      customer.setEmail(sharedPreferences.getString("email", ""));
+      customer.setCity(sharedPreferences.getString("city", ""));
+		return customer;
+	}
 }

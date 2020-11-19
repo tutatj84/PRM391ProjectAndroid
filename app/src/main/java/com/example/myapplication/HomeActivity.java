@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.myapplication.model.Customer;
+import com.example.myapplication.ui.OrderFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -19,10 +21,16 @@ import androidx.appcompat.widget.Toolbar;
 public class HomeActivity extends AppCompatActivity {
 
 	private AppBarConfiguration mAppBarConfiguration;
+	private Customer customer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// get login customer
+		customer = (Customer)getIntent().getSerializableExtra("customer");
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("customer", customer);
+		//
 		setContentView(R.layout.activity_home);
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);

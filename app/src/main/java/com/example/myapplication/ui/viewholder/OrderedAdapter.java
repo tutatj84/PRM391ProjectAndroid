@@ -6,6 +6,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.Customer;
 import com.example.myapplication.model.Order;
 import com.example.myapplication.ui.OrderFragment;
 
@@ -62,8 +63,8 @@ public class OrderedAdapter extends BaseAdapter {
         }
 
         final Order order = listOrders.get(position);
-//        Customer customer = orderFragment.getCustomer(order.getCusId());
-//        tvCustomerName.setText(customer.getName());
+        Customer customer = orderFragment.getCustomer();
+        tvCustomerName.setText(customer.getName());
         tvOrderDate.setText(order.getOrderDate());
         tvDeliveryDate.setText(order.getDeliverDate());
         tvTotalAmount.setText(String.valueOf(order.getTotalPrice()));
