@@ -102,7 +102,7 @@ public class DetailActivity extends AppCompatActivity {
         final Product product = (Product) intent.getSerializableExtra("product");
         String productId = String.valueOf(product.getProductID());
         int orderQuantity = amount;
-        Long priceOrder = setTotal(amount);
+        Long priceOrder = product.getPrice();
         db.execSQL(dbHelper.INSERT_TABLE_ORDERITEM, new Object[]{productId, orderQuantity, priceOrder});
         Toast.makeText(DetailActivity.this, "Cho vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
     }
