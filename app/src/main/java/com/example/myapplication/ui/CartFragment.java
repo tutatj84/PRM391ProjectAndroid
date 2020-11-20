@@ -1,5 +1,8 @@
 package com.example.myapplication.ui;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.DBHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.model.Customer;
 import com.example.myapplication.model.Order;
 import com.example.myapplication.model.OrderItem;
 import com.example.myapplication.model.Product;
@@ -118,9 +122,9 @@ public class CartFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Order order = new Order(1, "Ordered", getCurrentDate(), getDeliveryDate(), "customer.Address", totalAmount);
+//                Order order = new Order(1, "Ordered", getCurrentDate(), getDeliveryDate(), "customer.Address", totalAmount);
 
-                //Order order = new Order(getCurrentCustomer().getId(), "Ordered", getCurrentDate(), getDeliveryDate(), getCurrentCustomer().getAddress(), totalAmount);
+                Order order = new Order(getCustomer().getId(), "Ordered", getCurrentDate(), getDeliveryDate(), getCustomer().getCity(), totalAmount);
 
                 db = helper.getWritableDatabase();
                 for (OrderItem item : listItems) {
@@ -181,6 +185,19 @@ public class CartFragment extends Fragment {
             p.setPrice(c.getLong(c.getColumnIndex("price")));
         }
         return p;
+    }
+
+    public Customer getCustomer() {
+        Customer customer = new Customer();
+        Activity a = getActivity();
+        SharedPreferences sharedPreferences= getActivity().getSharedPreferences("sessionLogin", Context.MODE_PRIVATE);
+        customer.setId(sharedPreferences.getInt("cusId", 0));
+        customer.setUsername(sharedPreferences.getString("username", ""));
+        customer.setName(sharedPreferences.getString("name", "Mr. A"));
+        customer.setPhone(sharedPreferences.getString("phone", ""));
+        customer.setEmail(sharedPreferences.getString("email", ""));
+        customer.setCity(sharedPreferences.getString("city", ""));
+        return customer;
     }
 
     private String getCurrentDate() {

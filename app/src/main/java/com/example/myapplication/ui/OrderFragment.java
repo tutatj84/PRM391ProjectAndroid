@@ -111,13 +111,13 @@ public class OrderFragment extends Fragment {
 	public Customer getCustomer() {
 		Customer customer = new Customer();
 		Activity a = getActivity();
-      SharedPreferences sharedPreferences= getActivity().getSharedPreferences("sessionLogin", Context.MODE_PRIVATE);
-      customer.setId(sharedPreferences.getInt("cusId", 0));
-      customer.setUsername(sharedPreferences.getString("username", ""));
-      customer.setName(sharedPreferences.getString("name", "Mr. A"));
-      customer.setPhone(sharedPreferences.getString("phone", ""));
-      customer.setEmail(sharedPreferences.getString("email", ""));
-      customer.setCity(sharedPreferences.getString("city", ""));
+        SharedPreferences sharedPreferences= getActivity().getSharedPreferences("sessionLogin", Context.MODE_PRIVATE);
+        customer.setId(sharedPreferences.getInt("cusId", 0));
+        customer.setUsername(sharedPreferences.getString("username", ""));
+        customer.setName(sharedPreferences.getString("name", "Mr. A"));
+        customer.setPhone(sharedPreferences.getString("phone", ""));
+        customer.setEmail(sharedPreferences.getString("email", ""));
+        customer.setCity(sharedPreferences.getString("city", ""));
 		return customer;
 	}
 }
