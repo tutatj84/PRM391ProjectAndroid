@@ -16,22 +16,20 @@
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbars="vertical"
         android:textAlignment="viewStart"
-        android:textColor="#000000"
+        android:textColor="@android:color/holo_orange_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtProductName"
-        android:layout_width="203dp"
-        android:layout_height="34dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="8dp"
         android:textAlignment="viewStart"
         android:textColor="#000000"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtProductRemain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -39,8 +37,8 @@
         android:id="@+id/btnCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="12dp"
         android:fontFamily="sans-serif-thin"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -49,22 +47,22 @@
         android:textColor="@android:color/holo_blue_light"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtProductContent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtProductPrice" />
 
     <TextView
         android:id="@+id/txtProductPrice"
         android:layout_width="198dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="80dp"
         android:textAlignment="viewStart"
         android:textColor="@android:color/black"
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/btnMinus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtProductRemain" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProductName" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -89,63 +87,49 @@
 
 
     <TextView
-        android:id="@+id/txtProductRemain"
-        android:layout_width="92dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="303dp"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtProductName" />
-
-    <TextView
         android:id="@+id/txtProductContent"
-        android:layout_width="388dp"
-        android:layout_height="200dp"
+        android:layout_width="389dp"
+        android:layout_height="263dp"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginTop="20dp"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCart" />
 
     <Button
         android:id="@+id/btnPlus"
         android:layout_width="40dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginStart="36dp"
         android:background="@drawable/ic_baseline_arrow_right_24"
-        app:layout_constraintBottom_toTopOf="@+id/btnCart"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/txtAmount"
+        app:layout_constraintStart_toEndOf="@+id/btnMinus"
+        app:layout_constraintTop_toTopOf="@+id/txtAmount" />
 
     <Button
         android:id="@+id/btnMinus"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_marginStart="78dp"
-        android:layout_marginBottom="12dp"
         android:background="@drawable/ic_baseline_arrow_left_24"
-        app:layout_constraintBottom_toTopOf="@+id/btnCart"
-        app:layout_constraintStart_toEndOf="@+id/txtProductPrice" />
+        app:layout_constraintBottom_toBottomOf="@+id/txtProductPrice"
+        app:layout_constraintStart_toEndOf="@+id/txtProductPrice"
+        app:layout_constraintTop_toTopOf="@+id/txtProductPrice" />
 
     <TextView
         android:id="@+id/txtAmount"
-        android:layout_width="30dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="24dp"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnCart"
+        app:layout_constraintBottom_toBottomOf="@+id/btnMinus"
         app:layout_constraintEnd_toStartOf="@+id/btnPlus"
-        app:layout_constraintStart_toEndOf="@+id/btnMinus" />
+        app:layout_constraintStart_toEndOf="@+id/btnMinus"
+        app:layout_constraintTop_toTopOf="@+id/btnMinus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

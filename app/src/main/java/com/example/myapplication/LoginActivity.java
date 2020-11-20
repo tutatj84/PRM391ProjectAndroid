@@ -37,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
 	}
 
 	public void signUp(View view) {
-
+		Intent intent = new Intent(this, SignUpActivity.class);
+		startActivity(intent);
 	}
 
 	public void logIn(View view) {
@@ -53,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
 				customer.setUsername(cursor.getString(cursor.getColumnIndex("username")));
 				customer.setName(cursor.getString(cursor.getColumnIndex("name")));
 				customer.setPhone(cursor.getString(cursor.getColumnIndex("phone")));
-				customer.setEmail(cursor.getString(cursor.getColumnIndex("email")));
 				customer.setCity(cursor.getString(cursor.getColumnIndex("city")));
 
 //				Intent intent = new Intent(this, HomeActivity.class);
@@ -67,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
 				editor.putString("username", customer.getUsername());
 				editor.putString("name", customer.getName());
 				editor.putString("phone", customer.getPhone());
-				editor.putString("email", customer.getEmail());
 				editor.putString("city", customer.getCity());
 				editor.commit();
 			}

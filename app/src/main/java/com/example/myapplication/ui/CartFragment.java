@@ -176,7 +176,6 @@ public class CartFragment extends Fragment {
             p.setProductID(c.getInt(c.getColumnIndex("pro_id")));
             p.setimage(c.getString(c.getColumnIndex("image")));
             p.setName(c.getString(c.getColumnIndex("name")));
-            p.setRemainQuantity(c.getInt(c.getColumnIndex("remain_quantity")));
             p.setType(c.getString(c.getColumnIndex("type")));
             p.setContent(c.getString(c.getColumnIndex("content")));
             p.setPrice(c.getLong(c.getColumnIndex("price")));

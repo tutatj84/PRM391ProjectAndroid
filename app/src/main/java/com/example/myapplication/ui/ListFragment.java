@@ -125,7 +125,6 @@ public class ListFragment extends Fragment {
 					product.setimage(cursor.getString(cursor.getColumnIndex("image")));
 					product.setName(cursor.getString(cursor.getColumnIndex("name")));
 					product.setPrice(cursor.getLong(cursor.getColumnIndex("price")));
-					product.setRemainQuantity(cursor.getInt(cursor.getColumnIndex("remain_quantity")));
 					product.setType(cursor.getString(cursor.getColumnIndex("type")));
 					product.setContent(cursor.getString(cursor.getColumnIndex("content")));
 					productList.add(product);
@@ -153,7 +152,6 @@ public class ListFragment extends Fragment {
 			product.setProductID(cursor.getInt(cursor.getColumnIndex("pro_id")));
 			product.setimage(cursor.getString(cursor.getColumnIndex("image")));
 			product.setName(cursor.getString(cursor.getColumnIndex("name")));
-			product.setRemainQuantity(cursor.getInt(cursor.getColumnIndex("remain_quantity")));
 			product.setType(cursor.getString(cursor.getColumnIndex("type")));
 			product.setContent(cursor.getString(cursor.getColumnIndex("content")));
 			product.setPrice(cursor.getLong(cursor.getColumnIndex("price")));

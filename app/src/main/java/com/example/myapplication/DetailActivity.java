@@ -18,7 +18,6 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView imgProduct;
     private TextView txtProductName;
     private TextView txtProductPrice;
-    private TextView txtProductRemain;
     private TextView txtProductType;
     private TextView txtProductContent;
     private TextView txtAmount;
@@ -38,7 +37,6 @@ public class DetailActivity extends AppCompatActivity {
         imgProduct = findViewById(R.id.imgProduct);
         txtProductName = findViewById(R.id.txtProductName);
         txtProductPrice = findViewById(R.id.txtProductPrice);
-        txtProductRemain = findViewById(R.id.txtProductRemain);
         txtProductType = findViewById(R.id.txtProductType);
         txtProductContent = findViewById(R.id.txtProductContent);
         txtAmount = findViewById(R.id.txtAmount);
@@ -51,7 +49,6 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this).load(product.getimage()).into(imgProduct);
         txtProductName.setText(product.getName());
         txtProductPrice.setText(product.getPrice() + " VNĐ");
-        txtProductRemain.setText("Số lượng: " + product.getRemainQuantity());
         txtProductType.setText(product.getType());
         txtProductContent.setText(product.getContent());
         txtAmount.setText(String.valueOf(amount));
@@ -61,14 +58,9 @@ public class DetailActivity extends AppCompatActivity {
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(amount >= product.getRemainQuantity()){
-                    Toast.makeText(DetailActivity.this, "Bạn không thể chọn quá số lượng", Toast.LENGTH_SHORT).show();
-                }
-                else if(amount < product.getRemainQuantity()){
-                    amount++;
-                    txtAmount.setText(String.valueOf(amount));
-                    setTotal(amount);
-                }
+                amount++;
+                txtAmount.setText(String.valueOf(amount));
+                setTotal(amount);
             }
         });
 
@@ -114,7 +106,6 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this).load(product.getimage()).into(imgProduct);
         txtProductName.setText(product.getName());
         txtProductPrice.setText(total + " VNĐ");
-        txtProductRemain.setText("Số lượng: " + product.getRemainQuantity());
         txtProductType.setText(product.getType());
         txtProductContent.setText(product.getContent());
 
